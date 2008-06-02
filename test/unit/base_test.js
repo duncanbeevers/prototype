@@ -392,7 +392,27 @@ new Test.Unit.Runner({
       this.assert(Prototype.Browser.Gecko);
     } 
   },
-  
+
+  testPlatformDetection: function() {
+    var results = $H(Prototype.Platform).map(function(engine){
+      return engine;
+    }).partition(function(engine){
+      return engine[1] == true
+    });
+
+    var trues = results[0], falses = results[1];
+    this.assert(trues.size() == 0 || trues.size() == 1, 
+      'There should be only one or no platform detected.');
+
+    // we should have definite trues or falses here
+    trues.each(function(result) {
+      this.assert(result[1] === true);
+    }, this);
+    falses.each(function(result) {
+      this.assert(result[1] === false);
+    }, this);
+  },
+
   testClassCreate: function() { 
     this.assert(Object.isFunction(Animal), 'Animal is not a constructor');
     this.assertEnumEqual([Cat, Mouse, Dog, Ox], Animal.subclasses);

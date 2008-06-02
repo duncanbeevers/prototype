@@ -11,6 +11,12 @@ var Prototype = {
     MobileSafari: !!navigator.userAgent.match(/Apple.*Mobile.*Safari/)
   },
 
+  Platform: {
+    Windows: !!navigator.platform.match(/Win/),
+    Macintosh: !!navigator.platform.match(/Mac/),
+    Linux: !!navigator.platform.match(/Linux/)
+  },
+
   BrowserFeatures: {
     XPath: !!document.evaluate,
     SelectorsAPI: !!document.querySelector,
