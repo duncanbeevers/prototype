@@ -183,7 +183,7 @@ Ajax.Request = Class.create(Ajax.Base, {
           this.options.parameters :
           Object.toQueryString(this.options.parameters);
 
-    if (!['get', 'post'].include(this.method)) {
+    if ('get' != this.method && 'post' != this.method) {
       // simulate other verbs over post
       params += (params ? '&' : '') + "_method=" + this.method;
       this.method = 'post';
